@@ -39,15 +39,15 @@
     />
     <game-info id="gameinfo" />
     <div
-      id="textarea"
-      class="console-log"
+      class="console"
     >
-      <p
+      <span
         v-for="line in stdIO"
         :key="line.type"
+        class="line"
       >
         {{ line }}
-      </p>
+      </span>
     </div>
     <input
       id="lname"
@@ -151,20 +151,23 @@ input {
 .panel + .panel {
   margin-top: 7px;
 }
-.console-log {
-  border-radius: 3px 3px 3px 3px;
+.console {
+  height: 20%;
   border-color: #888;
   border-width: 1px;
   border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-size: 8pt;
+  text-align: left;
   font-family: monospace;
   font-weight: 100;
-  font-size: 8pt;
-  height: 20%;
-  overflow-y: scroll;
   white-space: nowrap;
-  text-align: left;
+  overflow-y: scroll;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
-p {
+.console .line {
   margin: 0px;
 }
 .multipv-line:hover {

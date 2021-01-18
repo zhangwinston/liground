@@ -1,6 +1,6 @@
 <template>
   <div class="blue merida is2d">
-    <div class="grid-parent">
+    <div class="chessground-parent">
       <div
         ref="pockets"
         class="pockets"
@@ -23,7 +23,10 @@
           />
         </div>
       </div>
-      <div :class="{koth: variant==='kingofthehill', rk: variant==='racingkings'}">
+      <div
+        class="chessground-board"
+        :class="{koth: variant==='kingofthehill', rk: variant==='racingkings'}"
+      >
         <div
           ref="board"
           class="cg-board-wrap"
@@ -391,9 +394,11 @@ export default {
   float: left;
   background-color: #000;
 }
-.grid-parent {
-  display: grid;
-  grid-template-columns: auto 1fr
+.chessground-parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .pockets {
   margin-right: 1.5px;

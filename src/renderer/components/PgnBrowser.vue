@@ -101,6 +101,7 @@ export default {
 
 #gamefilter {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .roundseperator {

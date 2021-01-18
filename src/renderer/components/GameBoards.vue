@@ -1,42 +1,45 @@
 <template>
-  <div id="inner">
-    <div>
-      <div class="main-grid">
-        <div class="chessboard-grid">
-          <pgn-browser id="pgnbrowser" />
-          <div @mousewheel.prevent="scroll($event)">
-            <ChessGround
-              id="chessboard"
-              :orientation="orientation"
-              @onMove="showInfo"
-            />
+  <div class="main">
+    <div class="left-container">
+      <div class="game-container">
+        <pgn-browser class="pgn-browser" />
+        <div class="board-container">
+          <div class="board-top">
+            <div
+              class="chessground"
+              @mousewheel.prevent="scroll($event)"
+            >
+              <ChessGround
+                :orientation="orientation"
+                @onMove="showInfo"
+              />
+            </div>
+            <EvalBar class="eval-bar" />
           </div>
-          <EvalBar id="evalbar" />
-          <div id="fen-field">
+          <div class="fen">
             FEN <input
-              id="lname"
+              class="input"
               type="text"
-              name="lname"
               placeholder="fen position"
               :value="fen"
               size="60"
               @change="checkValidFEN"
             >
-            <PieceStyleSelector id="piece-style" />
+            <PieceStyleSelector class="piece-style" />
           </div>
         </div>
-        <EvalPlot id="evalplot" />
-        <AnalysisView
-          id="analysisview"
-          :reset="resetAnalysis"
-          @move-to-start="moveToStart"
-          @move-to-end="moveToEnd"
-          @move-back-one="moveBackOne"
-          @move-forward-one="moveForwardOne"
-          @flip-board="flipBoard"
-        />
       </div>
+      <EvalPlot class="eval-plot" />
     </div>
+    <AnalysisView
+      class="analysis-view"
+      :reset="resetAnalysis"
+      @move-to-start="moveToStart"
+      @move-to-end="moveToEnd"
+      @move-back-one="moveBackOne"
+      @move-forward-one="moveForwardOne"
+      @flip-board="flipBoard"
+    />
   </div>
 </template>
 
@@ -230,68 +233,68 @@ export default {
 </script>
 
 <style scoped>
-.main-grid {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: auto auto;
-  gap: 1em 1em;
-  grid-template-areas:
-    "chessboard analysisview"
-    "evalplot analysisview";
+.main {
+  min-width: 0;
+  min-height: 0;
+  margin: 0 20px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1 1 auto;
 }
-.main-grid > .chessboard-grid {
-  grid-area: chessboard;
-  display: grid;
-  grid-template-columns: 20% 70% auto;
-  grid-template-rows: auto auto;
-  gap: 1em;
-  grid-template-areas:
-    "pgnbrowser . ."
-    "fenfield fenfield fenfield";
+.left-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 50%;
 }
-#analysisview {
-  grid-area: analysisview;
-  max-width: 40vw;
-  max-height: calc(100vh - 25px);
+.analysis-view {
+  min-width: 0;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 50%;
 }
-input {
+.game-container {
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+}
+.pgn-browser {
+  border: 1px solid black;
+  border-radius: 4px;
+  flex-grow: 0;
+}
+.board-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.board-container .board-top {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.chessground {
+  flex-grow: 1;
+}
+.eval-bar {
+  margin: 10px;
+  flex-grow: 0;
+}
+.fen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fen .input {
   font-size: 12pt;
   max-width: 60vw;
 }
-#fen-field {
-  grid-area: fenfield;
-  /*margin-left: 48px;*/
-}
-#piece-style {
+.piece-style {
   margin-top: 10px;
-  max-width: 300px;
-  margin-left: 142px;
-}
-#pgnbrowser {
-  grid-area: pgnbrowser;
-  border: 1px solid black;
-  border-radius: 4px;
-  margin-left: 1em;
-  max-height: 60vh;
-}
-#chessboard {
-  display: inline-block;
-}
-.bottom-margin {
-  margin-bottom: 1.5em;
-}
-#inner {
-  display: table;
-  margin: 0 auto;
-}
-#analysisview {
-  margin-left: 15px;
-}
-#evalbar {
-  float: left;
-}
-#evalplot {
-  grid-area: evalplot;
+  width: 300px;
 }
 
 </style>
