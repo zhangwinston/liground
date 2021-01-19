@@ -245,14 +245,14 @@ export default {
 .left-container {
   display: flex;
   flex-direction: column;
-  flex: 0 1 50%;
+  flex: 0 1 60%;
 }
 .analysis-view {
   min-width: 0;
   margin-left: 15px;
   display: flex;
   flex-direction: column;
-  flex: 0 1 50%;
+  flex: 0 1 40%;
 }
 .game-container {
   min-height: 0;
