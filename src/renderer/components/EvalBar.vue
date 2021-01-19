@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style scoped>
 
 .progress {
   position: relative;
@@ -32,14 +32,14 @@ export default {
   background: #fff;
   border: 1px solid #222;
   border-radius: 5px 5px 5px 5px;
+  overflow: hidden;
 }
 .flip {
   transform: scaleY(-1);
 }
 .progress-value {
   width: 100%;
-  height: 0;
-  border-radius: 5px 5px 0 0;
+  height: 50%;
   background: #000;
   transition: height .25s;
 }

@@ -280,7 +280,7 @@ export default {
   flex-grow: 1;
 }
 .eval-bar {
-  margin: 10px;
+  margin: 0 10px;
   flex-grow: 0;
 }
 .fen {
